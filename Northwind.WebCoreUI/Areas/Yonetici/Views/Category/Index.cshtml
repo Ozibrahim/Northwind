@@ -97,6 +97,42 @@
 </div>
 <!-- ./modal -->
 <!-- modal Kategori Ekle -->
+<!-- modal Guncelle Ekle -->
+<div class="modal fade" id="modalKategoriGuncelle">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Ürün Guncelleme Paneli</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input name="GCategoryId" id="GCategoryId" type="hidden" />
+                    <label class="form-label">Kategori Adı</label>
+                    <input name="GCategoryName" id="GCategoryName" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Kategori Açıklaması</label>
+                    <textarea name="GDescription" id="GDescription">           
+                    </textarea>
+                </div>           
+
+
+
+
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                <button id="btnKategoriDuzunle" type="button" class="btn btn-primary">Güncelle</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- ./modal -->
 @section Styles {
     <!-- datatables -->
     <link rel="stylesheet" href="/adminassets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
@@ -190,6 +226,7 @@
 
         // Summernote
         $('#Description').summernote()
+        
 
 
         $("#btnKategoriEkle").click(function()
@@ -234,6 +271,127 @@
         
         
         });
+
+        $("#tblCategory").on("click",".btnDuzenle",function()
+        {
+           var pid = $(this).attr("pid");
+
+           $.ajax({
+                url: "/Yonetici/Category/GetCategory",
+                dataType: "json",
+                method: "post",
+                data: { id: pid },
+                success: function (r) {
+                    if (r.result)
+                    {
+
+                    $("#GCategoryId").val(r.data.categoryId);
+                    $("#GCategoryName").val(r.data.categoryName);
+                    $("#GDescription").summernote('code',r.data.description);
+                    $("#modalKategoriGuncelle").modal("show");
+                    }
+                },
+                error: function () {
+
+                }
+            });
+
+        });
+
+
+        $("body").on("click","#btnKategoriDuzunle",function()
+           {
+         
+                  
+
+              var category = {
+                  
+                   
+                   CategoryId : $("#GCategoryId").val(),
+                   CategoryName : $("#GCategoryName").val(),
+                   Description: $("#GDescription").val(),
+                   
+
+
+
+               }
+
+                $.ajax({
+                   url: "/Yonetici/Category/Update",
+                   dataType: "json",
+                   method: "post",
+                   data: { category: category },
+                   success: function (r) {
+                       if (r.result)
+                       {
+                         Swal.fire({
+                         title: "İşlem Başarılı",
+                         text: r.mesaj,
+                         icon: "warning",
+                         showCancelButton: false,
+                         confirmButtonColor: "#3085d6",
+                         cancelButtonColor: "#d33",
+                         confirmButtonText: "Tamam"
+                           }).then((result) => {
+                         if (result.isConfirmed) {
+                               var table = new DataTable('#tblCategory');
+                               table.ajax.reload(null,false);
+                         }
+                       });
+                       }
+
+                   },
+                   error: function () {
+
+                   }
+               });
+
+
+           });
+
+        $("#tblCategory").on("click",".btnSil",function()
+                 {
+                    
+                    var pid = $(this).attr("pid");
+
+                            Swal.fire({
+               title: "UYARI",
+               text: "Ürün Silinecek Emin Misiniz!",
+               icon: "warning",
+               showCancelButton: true,
+               confirmButtonColor: "#3085d6",
+               cancelButtonColor: "#d33",
+               confirmButtonText: "Sil",
+               cancelButtonText: "Vazgeç"
+             }).then((result) => {
+               if (result.isConfirmed) {
+
+                    $.ajax({
+                         url: "/Yonetici/Category/Delete",
+                         dataType: "json",
+                         method: "post",
+                         data: { id: pid },
+                         success: function (r) {
+                             if (r.result)
+                             {
+                                 var table = new DataTable('#tblCategory');
+                                 table.ajax.reload(null,false);
+                                 Swal.fire({
+                                 title: "Silindi!",
+                                 text: r.mesaj,
+                                 icon: "success"
+                                 });
+                             }
+                         },
+                         error: function () {
+
+                         }
+                     });
+               }
+             });
+
+
+                 });
     
     
     });

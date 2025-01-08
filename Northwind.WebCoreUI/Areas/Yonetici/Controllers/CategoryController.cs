@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Infrastucture.CrossCuttingConcern.Converters;
+using Infrastucture.Model;
 using Infrastucture.Utility;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
@@ -26,6 +27,8 @@ namespace Northwind.WebCoreUI.Areas.Yonetici.Controllers
         {
             return View();
         }
+
+
 
         public IActionResult Add(IFormCollection data)
         {
@@ -95,5 +98,43 @@ namespace Northwind.WebCoreUI.Areas.Yonetici.Controllers
 
             return Json(new { data = liste });
         }
+
+        public JsonResult GetCategory(int id)
+        {
+
+            Category category = _categoryBs.Get(x => x.CategoryId == id);
+            
+            
+            return Json(new AjaxResponse<Category>(true, category));
+        }
+
+
+        public JsonResult Update(Category category)
+        {
+            
+            Category categorydb = _categoryBs.Get(x => x.CategoryId == category.CategoryId);
+            categorydb.CategoryName = category.CategoryName;
+            categorydb.Description = category.Description;
+
+            _categoryBs.Update(categorydb);
+
+
+
+            return Json(new AjaxResponse<Category>(true, categorydb, categorydb.CategoryName + " ürünü başarıyla güncellendi."));
+        }
+       
+        public JsonResult Delete(int id)
+        {
+        
+            Category categorydb = _categoryBs.Get(x => x.CategoryId == id);
+
+            _categoryBs.Delete(categorydb);
+
+
+
+            return Json(new AjaxResponse<Category>(true, categorydb, categorydb.CategoryName + " ürünü başarıyla silindi."));
+        }
+
+
     }
 }
