@@ -1,6 +1,6 @@
 # Northwind
-## Bu projede katmanlı mimari yapısını kullanara bir yönetim panli yapılması hedeflenmiştir
-### Projede kullanulan bazı yöntemler
+Bu projede katmanlı mimari yapısını kullanarak bir yönetim paneli yapılması hedeflenmiştir
+## Projede kullanulan bazı yöntemler
 * MSSQL (Northwind.db)
 * OOP
 * ORM (EntityFrameWorkCore)
