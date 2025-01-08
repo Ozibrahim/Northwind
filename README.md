@@ -1,4 +1,4 @@
-# Northwind
+[08.01.2025 14_55_52 - Screen - İsimsiz video.webm](https://github.com/user-attachments/assets/2d448dea-4c6d-452d-bcd1-0008c457ed3e)# Northwind
 ## Bu projede katmanlı mimari yapısını kullanara bir yönetim panli yapılması hedeflenmiştir
 ### Projede kullanulan bazı yöntemler
 * MSSQL (Northwind.db)
@@ -17,12 +17,12 @@
 * Extensions
 * Ajax,DataTables
 * SweetAlerts
-
-
+  
 ... ve modern yazılım geliştirme teknikleri temel alınarak geliştirilmiştir.
-# Login Ekranı
-[08.01.2025 12_46_20 - Screen - İsimsiz video.webm](https://github.com/user-attachments/assets/722125f4-eefa-4088-b86c-4ea7e8ec3663)
-# Yönetici Panel
+
+# İçerik
+[Northwind.webm](https://github.com/user-attachments/assets/06685261-ff3a-4d66-9986-b799c3582bef)
+
 
 
 
