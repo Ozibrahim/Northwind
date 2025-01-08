@@ -1,0 +1,242 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Kategoriler</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Kategori Yönetimi</a></li>
+                    <li class="breadcrumb-item active">Kategori Listesi</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Kategori Listesi</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalKategoriEkle">
+                            Kategori Ekle
+                        </button>                       
+
+                        <table id="tblCategory" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Kategori No</th>
+                                    <th>Kategori Adı</th>
+                                    <th>Açıklaması</th>
+                                    <th>Kategori ikonu</th>                              
+                                    <th></th>
+                                    <th>İşlemler</th>
+
+                                </tr>
+                            </thead>
+                          
+
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<!-- modal Kategori Ekle -->
+<div class="modal fade" id="modalKategoriEkle">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Kategori Ekleme Paneli</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+
+                    <label class="form-label">Kategori Adı</label>
+                    <input name="CategoryName" id="CategoryName" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Kategori Açıklaması</label>                    
+                    <textarea name="Description" id="Description">           
+                    </textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Kategori İkonu</label>
+                    <input type="file" @* multiple *@ class="form-control" id="fuCategoryImage" />
+                </div>   
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                <button id="btnKategoriEkle" type="button" class="btn btn-primary">Kaydet</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- ./modal -->
+<!-- modal Kategori Ekle -->
+@section Styles {
+    <!-- datatables -->
+    <link rel="stylesheet" href="/adminassets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/adminassets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="/adminassets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="/adminassets/plugins/summernote/summernote-bs4.min.css">
+}
+@section Scripts{
+    <!-- datatables -->
+    <script src="/adminassets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/adminassets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/adminassets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/adminassets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="/adminassets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="/adminassets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="/adminassets/plugins/jszip/jszip.min.js"></script>
+    <script src="/adminassets/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="/adminassets/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="/adminassets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="/adminassets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="/adminassets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- Summernote -->
+    <script src="/adminassets/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- Page specific script -->
+    <script>
+          $(function () {
+                    $("#tblCategory").DataTable({
+                        ajax: {
+                        url: '/Yonetici/Category/tblCategories',
+                        },
+            columns: [
+                { data: 'categoryId' },
+                { data: 'categoryName' },
+                { data: 'description' },
+                { data: 'picturePath' },
+                { data: 'categoryId' },
+                { data: 'categoryId' }        
+
+            ],
+                    columnDefs:[
+                                            {
+                        targets:1,
+                        render:function(data,type,row,meta)
+                        {
+                        return "<b>"+data+"</b>";
+                        }
+                        },
+                        {
+                        targets:3,
+                        render:function(data,type,row,meta)
+                        {
+                        if(data!=null){
+                        return "<img src='data:image/png;base64," + data + "' style='width: 300px;' />";
+                        }
+                        return "";
+                        }
+                        },
+                        {
+                        targets:4,
+                        render:function(data,type,row,meta)
+                        {
+                        return "<a class='btn btn-primary btnDuzenle' pid='"+data+"'>Düzenle</a>";
+                        }
+                        },
+                        {
+                             targets:5,
+                        render:function(data,type,row,meta)
+                        {
+                        return "<a class='btn btn-danger btnSil' pid='"+data+"'>Sil</a>";
+                        }
+                        }
+                    ],
+
+                    "responsive": true,
+                    "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+                    "lengthChange": true,
+                    "autoWidth": false,
+                    language: {
+                        url: '/adminassets/json/datatablesturkish.json'
+                    },
+                    "buttons": ["excel", "pdf", "print"],
+                    }).buttons().container().appendTo('#tblCategory_wrapper .col-md-6:eq(0)');
+
+
+            });
+
+                
+
+    $(function(){
+
+        // Summernote
+        $('#Description').summernote()
+
+
+        $("#btnKategoriEkle").click(function()
+        {
+            var categoryname = $("#CategoryName").val();
+            var description = $("#Description").val();
+            var formdata = new FormData();
+            var files =    $("#fuCategoryImage")[0].files;
+            for(var i=0;i<files.length;i++)
+            {
+                formdata.append(files[i].name,files[i]);
+            }
+            formdata.append("categoryname",categoryname);
+            formdata.append("description",description);
+
+
+
+           $.ajax({
+               url:"/Yonetici/Category/Add",
+               contentType:false,
+               processData:false,
+               type:"post",               
+               data:formdata,
+               success:(r)=>{
+                   if(r.result){
+                            var table = new DataTable('#tblCategory');
+                            table.ajax.reload(null,false);
+                                Swal.fire({
+                                title: "Eklendi!",
+                                text: "Kategori başarıyla eklendi",
+                                icon: "success"
+                                });
+                           $("#modalKategoriEkle").modal("hide");
+                   }
+               },
+               error:()=>{
+
+               },
+
+           });
+        
+        
+        
+        });
+    
+    
+    });
+
+    </script>
+}
