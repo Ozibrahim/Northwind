@@ -16,4 +16,5 @@
 * IOC,Dependecy Injection
 * Sessions
 * Extensions
-* 
+
+... ve modern yazılım geliştirme teknikleri temel alınarak geliştirilmiştir.
