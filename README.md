@@ -20,7 +20,7 @@
 ... ve modern yazılım geliştirme teknikleri temel alınarak geliştirilmiştir.
 # Login Ekranı
 ![login](https://github.com/user-attachments/assets/7333d3db-4524-447b-965b-9909915e7664)
-<br/>
+&nbsp;
 ![login2](https://github.com/user-attachments/assets/5dd5c8ff-8b4b-4520-9e7d-d7e3ec854625)
 
 
