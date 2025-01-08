@@ -12,10 +12,12 @@
 * Communication (Mail Gönderme)
 * Güvenlik kodu oluşturma (Captacha)
 * MVC Areas,Partials,View Components, 
-* Ajax
 * IOC,Dependecy Injection
 * Sessions
 * Extensions
+* Ajax,DataTables
+* SweetAlerts
+
 
 ... ve modern yazılım geliştirme teknikleri temel alınarak geliştirilmiştir.
 # Login Ekranı
@@ -24,5 +26,8 @@
 ![login2](https://github.com/user-attachments/assets/5dd5c8ff-8b4b-4520-9e7d-d7e3ec854625)
 # Yönetici Panel
 ![image](https://github.com/user-attachments/assets/127c00b2-3629-489a-9e46-ff563b548ce5)
+&nbsp;
+![image](https://github.com/user-attachments/assets/6ada9e4f-7d31-406e-8bc0-3d0f3b5bf4eb)
+
 
 
