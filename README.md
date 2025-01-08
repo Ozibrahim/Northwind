@@ -1,4 +1,4 @@
-[08.01.2025 14_55_52 - Screen - İsimsiz video.webm](https://github.com/user-attachments/assets/2d448dea-4c6d-452d-bcd1-0008c457ed3e)# Northwind
+# Northwind
 ## Bu projede katmanlı mimari yapısını kullanara bir yönetim panli yapılması hedeflenmiştir
 ### Projede kullanulan bazı yöntemler
 * MSSQL (Northwind.db)
