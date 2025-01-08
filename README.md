@@ -10,7 +10,7 @@ Bu projede katmanlı mimari yapısını kullanarak bir yönetim paneli yapılmas
 * Mapper (AutoMapper)
 * Crypto
 * Communication (Mail Gönderme)
-* Güvenlik kodu oluşturma (Captacha)
+* Güvenlik kodu oluşturma (Captcha)
 * MVC Areas,Partials,View Components, 
 * IOC,Dependecy Injection
 * Sessions
